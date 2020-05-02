@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
+import './../routes/Movie.dart';
+
 class GenresOptions extends StatelessWidget {
+  final Function redirectToGenre;
+  GenresOptions(this.redirectToGenre);
+
   final options = {
     "genres": [
       {"id": 0, "name": "All"},
@@ -42,12 +47,13 @@ class GenresOptions extends StatelessWidget {
                     return Container(
                       margin: EdgeInsets.only(right: addMargin ? 15 : 0),
                       child: RaisedButton(
-                        color: Colors.purple,
+                        color: Colors.green,
                         child: Text(
                           entry.value['name'],
                           style: TextStyle(color: Colors.white),
                         ),
-                        onPressed: () => {},
+                        onPressed: () =>
+                            this.redirectToGenre(entry.value['id']),
                       ),
                     );
                   }).toList()
