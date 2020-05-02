@@ -5,6 +5,7 @@ import 'dart:convert';
 // import './../models/MovieCard.dart';
 import './../models/MoviesResponse.dart';
 import './../widgets/MovieCard.dart';
+import './../widgets/GenresOptions.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -38,12 +39,20 @@ class _HomeState extends State<Home> {
         future: movies,
         builder: (ctx, snapshot) {
           if (snapshot.hasData) {
-            return GridView.count(
-                childAspectRatio: (itemWidth / itemHeight),
-                crossAxisCount: 2,
-                children: List.generate(snapshot.data.results.length, (index) {
-                  return MovieCard(snapshot.data.results[index].posterPath);
-                }));
+            return Column(
+              children: <Widget>[
+                GenresOptions(),
+                Expanded(
+                    child: GridView.count(
+                        childAspectRatio: (itemWidth / itemHeight),
+                        crossAxisCount: 2,
+                        children: List.generate(snapshot.data.results.length,
+                            (index) {
+                          return MovieCard(
+                              snapshot.data.results[index].posterPath);
+                        })))
+              ],
+            );
           } else if (snapshot.hasError) {
             print(snapshot.error);
             return Text('Opss tivemos um erro');
