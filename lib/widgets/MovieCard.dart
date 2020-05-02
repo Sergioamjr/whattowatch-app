@@ -7,12 +7,13 @@ class MovieCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+        margin: EdgeInsets.all(2),
         child: Container(
-      child: Image.network(
-        this.image,
-        fit: BoxFit.cover,
-      ),
-    ));
+          child: Image.network(
+            "https://image.tmdb.org/t/p/w500${this.image}",
+            fit: BoxFit.cover,
+          ),
+        ));
   }
 }
 

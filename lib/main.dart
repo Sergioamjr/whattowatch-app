@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './widgets/MovieCard.dart';
-import './models/MovieCard.dart';
+import './views/Home.dart';
 
 void main() => runApp(MyApp());
 
@@ -21,48 +20,5 @@ class MyApp extends StatelessWidget {
           ),
           body: Home(),
         ));
-  }
-}
-
-class Home extends StatelessWidget {
-  final List<MovieCardModel> movieList = [
-    MovieCardModel(
-        name: 'Harry potter',
-        image:
-            'https://image.tmdb.org/t/p/w500//wlfDxbGEsW58vGhFljKkcR5IxDj.jpg'),
-    MovieCardModel(
-        name: 'Harry potter',
-        image:
-            'https://image.tmdb.org/t/p/w500//wlfDxbGEsW58vGhFljKkcR5IxDj.jpg'),
-    MovieCardModel(
-        name: 'Harry potter',
-        image:
-            'https://image.tmdb.org/t/p/w500//wlfDxbGEsW58vGhFljKkcR5IxDj.jpg'),
-    MovieCardModel(
-        name: 'Harry potter',
-        image:
-            'https://image.tmdb.org/t/p/w500//wlfDxbGEsW58vGhFljKkcR5IxDj.jpg'),
-    MovieCardModel(
-        name: 'Harry potter',
-        image:
-            'https://image.tmdb.org/t/p/w500//wlfDxbGEsW58vGhFljKkcR5IxDj.jpg'),
-    MovieCardModel(
-        name: 'Harry potter',
-        image:
-            'https://image.tmdb.org/t/p/w500//wlfDxbGEsW58vGhFljKkcR5IxDj.jpg')
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-    final double itemHeight = (size.height - kToolbarHeight - 24) / 2;
-    final double itemWidth = size.width / 2;
-
-    return GridView.count(
-        childAspectRatio: (itemWidth / itemHeight),
-        crossAxisCount: 2,
-        children: List.generate(movieList.length, (index) {
-          return MovieCard(movieList[index].image);
-        }));
   }
 }
