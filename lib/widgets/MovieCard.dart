@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+import './../models/AppConfig.dart';
+
 class MovieCard extends StatelessWidget {
   final image;
+  final app = AppConfig();
 
   MovieCard(this.image);
   @override
@@ -9,15 +12,9 @@ class MovieCard extends StatelessWidget {
     return Card(
         child: Container(
       child: Image.network(
-        "https://image.tmdb.org/t/p/w500${this.image}",
+        "${app.image}${this.image}",
         fit: BoxFit.cover,
       ),
     ));
   }
 }
-
-// Image.network(
-//   this.image,
-//   filterQuality: FilterQuality.low,
-//   fit: BoxFit.contain,
-// ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './routes/Home.dart';
+import './views/Movie.dart';
+// import './views/Home.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(MovieRoute());

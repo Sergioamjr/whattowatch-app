@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 
-import './../views/Home.dart';
-import './../models/AppConfig.dart';
+import './models/AppConfig.dart';
 
-class MyApp extends StatelessWidget {
+class Template extends StatelessWidget {
+  final Function view;
   final app = AppConfig();
+
+  Template({@required this.view});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: app.getAppName(),
+        title: app.name,
         theme: ThemeData(
           primarySwatch: Colors.green,
         ),
         home: Scaffold(
           appBar: AppBar(
-            title: Text(app.getAppName()),
+            title: Text(app.name),
           ),
-          body: Home(),
+          body: view(),
         ));
   }
 }

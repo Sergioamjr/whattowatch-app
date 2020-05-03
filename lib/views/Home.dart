@@ -6,6 +6,15 @@ import './../models/MoviesResponse.dart';
 import './../widgets/MovieCard.dart';
 import './../widgets/GenresOptions.dart';
 
+import './../template.dart';
+
+class HomeRoute extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Template(view: () => Home());
+  }
+}
+
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
