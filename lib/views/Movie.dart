@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import './../template.dart';
 import './../models/AppConfig.dart';
@@ -45,7 +46,10 @@ class Movie extends StatelessWidget {
           ),
           Text(
             movieDetails['originalTitle'],
-            style: TextStyle(fontSize: 29, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontSize: 29,
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 51, 51, 51)),
           ),
           SizedBox(
             height: 15,
@@ -55,21 +59,23 @@ class Movie extends StatelessWidget {
             children: <Widget>[
               Description(
                 description: 'Ação, comédia',
-                subtitle: 'Gêneros',
+                subtitle: 'Genres',
               ),
               Description(
-                description: movieDetails['releaseDate'],
-                subtitle: 'Release',
+                description: DateFormat.yMMMd()
+                    .format(DateTime.parse(movieDetails['releaseDate'])),
+                subtitle: 'Release Date',
               ),
               Description(
                 description: movieDetails['voteAverage'].toString(),
-                subtitle: 'Nota',
+                subtitle: 'IMDB',
               ),
             ],
           ),
           Description(
             description: movieDetails['overview'],
-            subtitle: 'Sinopse',
+            subtitle: 'Overview',
+            alignment: TextAlign.justify,
           ),
         ],
       ),
@@ -80,8 +86,10 @@ class Movie extends StatelessWidget {
 class Description extends StatelessWidget {
   final String subtitle;
   final String description;
+  final alignment;
 
-  Description({this.subtitle, this.description});
+  Description(
+      {this.subtitle, this.description, this.alignment = TextAlign.left});
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +105,9 @@ class Description extends StatelessWidget {
         ),
         Text(
           this.description,
-          style: TextStyle(fontSize: 18),
+          style:
+              TextStyle(fontSize: 18, color: Color.fromARGB(255, 51, 51, 51)),
+          textAlign: alignment,
         ),
         SizedBox(
           height: 15,
