@@ -1,20 +1,29 @@
 import 'package:flutter/material.dart';
 
+import './../models/MoviesResponse.dart';
 import './../models/AppConfig.dart';
+import './../views/Movie.dart';
 
 class MovieCard extends StatelessWidget {
-  final image;
+  final Results movie;
   final app = AppConfig();
+  MovieCard(this.movie);
 
-  MovieCard(this.image);
+  void redictToMovieDetails(BuildContext ctx) {
+    Navigator.of(ctx).pushNamed(MovieRoute.routeName, arguments: movie);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
-        child: Container(
-      child: Image.network(
-        "${app.image}${this.image}",
-        fit: BoxFit.cover,
-      ),
-    ));
+      child: InkWell(
+          onTap: () => redictToMovieDetails(context),
+          child: Container(
+            child: Image.network(
+              "${app.image}${movie.posterPath}",
+              fit: BoxFit.cover,
+            ),
+          )),
+    );
   }
 }

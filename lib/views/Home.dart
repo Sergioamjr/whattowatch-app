@@ -9,6 +9,7 @@ import './../widgets/GenresOptions.dart';
 import './../template.dart';
 
 class HomeRoute extends StatelessWidget {
+  static const routeName = '/';
   @override
   Widget build(BuildContext context) {
     return Template(view: () => Home());
@@ -50,6 +51,11 @@ class _HomeState extends State<Home> {
     return MoviesResponse.fromJson(json.decode(response.body));
   }
 
+  void redictToMovieDetails(movie) {
+    print('redirectto');
+    print(movie.title);
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -71,8 +77,7 @@ class _HomeState extends State<Home> {
                           crossAxisCount: 2,
                           children: List.generate(snapshot.data.results.length,
                               (index) {
-                            return MovieCard(
-                                snapshot.data.results[index].posterPath);
+                            return MovieCard(snapshot.data.results[index]);
                           }))),
                 )
               ],
@@ -86,10 +91,3 @@ class _HomeState extends State<Home> {
         });
   }
 }
-
-// GridView.count(
-//         childAspectRatio: (itemWidth / itemHeight),
-//         crossAxisCount: 2,
-//         children: List.generate(movieList.length, (index) {
-//           return MovieCard(movieList[index].image);
-//         }));

@@ -3,8 +3,10 @@ import 'package:intl/intl.dart';
 
 import './../template.dart';
 import './../models/AppConfig.dart';
+import './../models/MoviesResponse.dart';
 
 class MovieRoute extends StatelessWidget {
+  static const routeName = '/movie';
   @override
   Widget build(BuildContext context) {
     return Template(view: () => Movie());
@@ -13,41 +15,24 @@ class MovieRoute extends StatelessWidget {
 
 class Movie extends StatelessWidget {
   final app = AppConfig();
-  final movieDetails = {
-    "popularity": 433.51,
-    "vote_count": 3242,
-    "video": false,
-    "posterPath": "/xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg",
-    "id": 419704,
-    "adult": false,
-    "backdropPath": "/5BwqwxMEjeFtdknRV792Svo0K1v.jpg",
-    "originalLanguage": "en",
-    "originalTitle": "Ad Astra",
-    "genreIds": [18, 878],
-    "title": "Ad Astra",
-    "voteAverage": 6,
-    "overview":
-        "The near future, a time when both hope and hardships drive humanity to look to the stars and beyond. While a mysterious phenomenon menaces to destroy life on planet Earth, astronaut Roy McBride undertakes a mission across the immensity of space and its many perils to uncover the truth about a lost expedition that decades before boldly faced emptiness and silence in search of the unknown.",
-    "releaseDate": "2019-09-17"
-  };
-
   @override
   Widget build(BuildContext context) {
+    final Results movie = ModalRoute.of(context).settings.arguments;
     return Container(
       padding: EdgeInsets.all(15),
       child: ListView(
         children: <Widget>[
           Image.network(
-            "${app.image}${movieDetails['posterPath']}",
+            "${app.image}${movie.backdropPath}",
             fit: BoxFit.contain,
           ),
           SizedBox(
             height: 15,
           ),
           Text(
-            movieDetails['originalTitle'],
+            movie.originalTitle,
             style: TextStyle(
-                fontSize: 29,
+                fontSize: 26,
                 fontWeight: FontWeight.bold,
                 color: Color.fromARGB(255, 51, 51, 51)),
           ),
@@ -63,17 +48,17 @@ class Movie extends StatelessWidget {
               ),
               Description(
                 description: DateFormat.yMMMd()
-                    .format(DateTime.parse(movieDetails['releaseDate'])),
+                    .format(DateTime.parse(movie.releaseDate)),
                 subtitle: 'Release Date',
               ),
               Description(
-                description: movieDetails['voteAverage'].toString(),
+                description: movie.voteAverage.toString(),
                 subtitle: 'IMDB',
               ),
             ],
           ),
           Description(
-            description: movieDetails['overview'],
+            description: movie.overview,
             subtitle: 'Overview',
             alignment: TextAlign.justify,
           ),

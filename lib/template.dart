@@ -9,16 +9,11 @@ class Template extends StatelessWidget {
   Template({@required this.view});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: app.name,
-        theme: ThemeData(
-          primarySwatch: Colors.green,
-        ),
-        home: Scaffold(
-          appBar: AppBar(
-            title: Text(app.name),
-          ),
-          body: view(),
-        ));
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(app.name),
+      ),
+      body: view(),
+    );
   }
 }
